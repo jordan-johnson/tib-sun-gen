@@ -1,0 +1,17 @@
+<div class="border rounded p-2 mb-2">
+    <h4>{{ category.Name }}</h4>
+    <hr />
+    <div ng-repeat="group in category.Fields" class="row">
+        <div ng-repeat="field in group" class="col">
+            <div class="form-group">
+                <label for="{{ field.Id }}">{{ field.Name }}</label>
+                <input type="text" class="form-control" id="{{ field.Id }}" value="{{ field.Value }}" ng-if="field.InputType == 'text'"/>
+                <input type="range" class="form-control-range" id="{{ field.Id }}" min="{{ field.Options.min }}" max="{{ field.Options.max }}" value="{{ field.Value }}" ng-if="field.InputType == 'range'"/>
+                <select class="custom-select" id="{{ field.Id }}" ng-if="field.InputType == 'select'">
+                    <option ng-repeat="(key, value) in field.Options" value="{{ field.Options[key] }}">{{ key }}</option>
+                </select>
+                <input type="checkbox" id="{{ field.Id }}" ng-if="field.InputType == 'checkbox'"/>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,28 @@
+{
+  "name": "tib-sun-gen",
+  "version": "1.0.0",
+  "description": "Random map generator for C&amp;C Tiberian Sun. This project is mainly so I can learn Node, React, and TypeScript.",
+  "main": "index.js",
+  "dependencies": {
+    "ts-loader": "^5.4.5",
+    "webpack-cli": "^3.3.2",
+    "webpack": "^4.30.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordan-johnson/tib-sun-gen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordan-johnson/tib-sun-gen/issues"
+  },
+  "homepage": "https://github.com/jordan-johnson/tib-sun-gen#readme"
+}
