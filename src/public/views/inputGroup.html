@@ -7,7 +7,7 @@
                 <label for="{{ field.Id }}">{{ field.Name }}</label>
                 <input type="text" class="form-control" id="{{ field.Id }}" ng-if="field.InputType == 'text'" ng-model="field.Value" ng-change="updateMapVariable(field.MapVariableBinding, field.Value)"/>
                 <input type="range" class="form-control-range" id="{{ field.Id }}" min="{{ field.Options.min }}" max="{{ field.Options.max }}" ng-if="field.InputType == 'range'" ng-model="field.Value" ng-change="updateMapVariable(field.MapVariableBinding, field.Value)"/>
-                <select class="custom-select" id="{{ field.Id }}" ng-if="field.InputType == 'select'">
+                <select class="custom-select" id="{{ field.Id }}" ng-if="field.InputType == 'select'" ng-model="field.Value" ng-change="updateMapVariable(field.MapVariableBinding, field.Value)">
                     <option ng-repeat="(key, value) in field.Options" value="{{ field.Options[key] }}">{{ key }}</option>
                 </select>
                 <input type="checkbox" id="{{ field.Id }}" ng-if="field.InputType == 'checkbox'" ng-model="field.Value" ng-change="updateMapVariable(field.MapVariableBinding, field.Value)"/>

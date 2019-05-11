@@ -247,24 +247,6 @@ const layout: Layout = {
                     }
                 ]
             ]
-        },
-        {
-            Name: 'Miscellaneous',
-            Fields: [
-                [
-                    {
-                        Name: 'Free Radar',
-                        Id: 'mapRadar',
-                        InputType: 'checkbox',
-                        MapVariableBinding: 'FreeRadar',
-                        Value: mapData.Basic.FreeRadar,
-                        Options: {
-                            'true': 'Yes',
-                            'false': 'No'
-                        }
-                    }
-                ]
-            ]
         }
     ],
     MapCode: ''
@@ -273,5 +255,4 @@ const layout: Layout = {
 let mapgen = new MapGenerator(layout, mapData);
 let app = angular.module('tib', []);
 
-app.filter('mapCodeFilter', () => function(input: MapData) { return mapgen.parseMapCode(input) });
 app.controller('IndexController', ['$scope', ($scope: any) => mapgen.view($scope)]);
