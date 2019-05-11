@@ -1,6 +1,7 @@
 import { MapData } from "./models/MapData";
-import { MapGenerator } from "./MapGenerator";
 import { Layout } from "./models/Layout";
+import { FileOperations } from "./FileOperations";
+import { MapGenerator } from "./MapGenerator";
 
 declare var angular: any;
 
@@ -252,7 +253,8 @@ const layout: Layout = {
     MapCode: ''
 }
 
-let mapgen = new MapGenerator(layout, mapData);
+let file = new FileOperations();
+let mapgen = new MapGenerator(file, layout, mapData);
 let app = angular.module('tib', []);
 
 app.controller('IndexController', ['$scope', ($scope: any) => mapgen.view($scope)]);
