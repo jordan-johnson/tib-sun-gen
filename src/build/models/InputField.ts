@@ -6,7 +6,7 @@ export interface InputField {
     Name: string;
     Id: string;
     InputType: 'text' | 'range' | 'checkbox' | 'select';
-    Value?: number | string | boolean;
     MapVariableBinding: string;
+    Value: number | string | boolean;
     Options?: Option;
 }

@@ -42,4 +42,7 @@ interface RandomMapData {
 export interface MapData {
     Basic: BasicMapData,
     RandomMap: RandomMapData
+
+    // index signature for looping through the object
+    [key: string]: any;
 }

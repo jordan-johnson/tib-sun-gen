@@ -2,7 +2,8 @@
     <h4>Map Details</h4>
     <div class="form-group">
         <label for="mapCode">Code</label>
-        <textarea class="form-control" id="mapCode" rows="25" style="resize: none;"></textarea>
+        <input type="hidden" ng-model="codeData"/>
+        <textarea class="form-control" id="mapCode" rows="25" style="resize: none;" ng-model="mapCode"></textarea>
     </div>
     <p>
         <button type="button" class="btn btn-primary btn-sm">Download</button>

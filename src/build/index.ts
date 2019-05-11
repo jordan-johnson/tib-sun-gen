@@ -6,7 +6,7 @@ declare var angular: any;
 
 const mapData: MapData = {
     Basic: {
-        Name: 'Untitled Map',
+        Name: 'Untitled Random Map',
         RandomMap: 'Yes',
         FreeRadar: 'No'
     },
@@ -27,9 +27,9 @@ const mapData: MapData = {
         UrbanPresence: 50,
         VeinholeMonsters: 1,
         TiberiumWildlife: 0,
-        UseIonStorms: true,
+        UseIonStorms: false,
         UseBlueTiberium: true,
-        UseTransitions: true
+        UseTransitions: false
     }
 }
 
@@ -44,7 +44,7 @@ const layout: Layout = {
                         Id: 'mapName',
                         InputType: 'text',
                         MapVariableBinding: 'Name',
-                        Value: 'Untitled Random Map'
+                        Value: mapData.Basic.Name
                     }
                 ],
                 [
@@ -53,6 +53,7 @@ const layout: Layout = {
                         Id: 'mapWidth',
                         InputType: 'range',
                         MapVariableBinding: 'Width',
+                        Value: mapData.RandomMap.Width,
                         Options: {
                             min: 0,
                             max: 3
@@ -63,6 +64,7 @@ const layout: Layout = {
                         Id: 'mapHeight',
                         InputType: 'range',
                         MapVariableBinding: 'Height',
+                        Value: mapData.RandomMap.Height,                        
                         Options: {
                             min: 0,
                             max: 3
@@ -74,8 +76,8 @@ const layout: Layout = {
                         Name: 'Player Count',
                         Id: 'mapPlayers',
                         InputType: 'range',
-                        MapVariableBinding: 'numPlayers',
-                        Value: 2,
+                        MapVariableBinding: 'NumPlayers',
+                        Value: mapData.RandomMap.NumPlayers,
                         Options: {
                             min: 2,
                             max: 8
@@ -93,7 +95,7 @@ const layout: Layout = {
                         Id: 'mapBiome',
                         InputType: 'select',
                         MapVariableBinding: 'Biome',
-                        Value: 1,
+                        Value: mapData.RandomMap.Biome,
                         Options: {
                             'Temperate': 1,
                             'Taiga': 2,
@@ -106,7 +108,7 @@ const layout: Layout = {
                         Id: 'mapTOD',
                         InputType: 'select',
                         MapVariableBinding: 'Time',
-                        Value: 1,
+                        Value: mapData.RandomMap.Time,
                         Options: {
                             'Afternoon': 1,
                             'Dusk': 2,
@@ -121,7 +123,7 @@ const layout: Layout = {
                         Id: 'mapPlateau',
                         InputType: 'select',
                         MapVariableBinding: 'RegionSize',
-                        Value: 50,
+                        Value: mapData.RandomMap.RegionSize,
                         Options: {
                             'Small': 25,
                             'Normal': 50,
@@ -134,7 +136,7 @@ const layout: Layout = {
                         Id: 'mapRuggedness',
                         InputType: 'select',
                         MapVariableBinding: 'Ruggedness',
-                        Value: 50,
+                        Value: mapData.RandomMap.Ruggedness,
                         Options: {
                             'Low': 25,
                             'Normal': 50,
@@ -149,7 +151,7 @@ const layout: Layout = {
                         Id: 'mapWater',
                         InputType: 'select',
                         MapVariableBinding: 'WaterAmount',
-                        Value: 50,
+                        Value: mapData.RandomMap.WaterAmount,
                         Options: {
                             'Small': 25,
                             'Normal': 50,
@@ -162,7 +164,7 @@ const layout: Layout = {
                         Id: 'mapUrban',
                         InputType: 'select',
                         MapVariableBinding: 'UrbanPresence',
-                        Value: 50,
+                        Value: mapData.RandomMap.UrbanPresence,
                         Options: {
                             'Small': 25,
                             'Normal': 50,
@@ -175,7 +177,7 @@ const layout: Layout = {
                         Id: 'mapVegetation',
                         InputType: 'select',
                         MapVariableBinding: 'Vegetation',
-                        Value: 50,
+                        Value: mapData.RandomMap.Vegetation,
                         Options: {
                             'Small': 25,
                             'Normal': 50,
@@ -190,7 +192,7 @@ const layout: Layout = {
                         Id: 'mapCycle',
                         InputType: 'checkbox',
                         MapVariableBinding: 'UseTransitions',
-                        Value: false
+                        Value: mapData.RandomMap.UseTransitions
                     }
                 ],
                 [
@@ -199,7 +201,7 @@ const layout: Layout = {
                         Id: 'mapIonStorms',
                         InputType: 'checkbox',
                         MapVariableBinding: 'UseIonStorms',
-                        Value: false
+                        Value: mapData.RandomMap.UseIonStorms
                     }
                 ]
             ]
@@ -213,7 +215,7 @@ const layout: Layout = {
                         Id: 'mapTibSize',
                         InputType: 'select',
                         MapVariableBinding: 'Tiberium',
-                        Value: 50,
+                        Value: mapData.RandomMap.Tiberium,
                         Options: {
                             'Small': 25,
                             'Normal': 50,
@@ -226,7 +228,7 @@ const layout: Layout = {
                         Id: 'mapTibFreq',
                         InputType: 'select',
                         MapVariableBinding: 'TiberiumLayout',
-                        Value: 50,
+                        Value: mapData.RandomMap.TiberiumLayout,
                         Options: {
                             'Low': 25,
                             'Normal': 50,
@@ -241,7 +243,7 @@ const layout: Layout = {
                         Id: 'mapBlueTiberium',
                         InputType: 'checkbox',
                         MapVariableBinding: 'UseBlueTiberium',
-                        Value: true
+                        Value: mapData.RandomMap.UseBlueTiberium
                     }
                 ]
             ]
@@ -255,7 +257,7 @@ const layout: Layout = {
                         Id: 'mapRadar',
                         InputType: 'checkbox',
                         MapVariableBinding: 'FreeRadar',
-                        Value: false,
+                        Value: mapData.Basic.FreeRadar,
                         Options: {
                             'true': 'Yes',
                             'false': 'No'
@@ -271,4 +273,5 @@ const layout: Layout = {
 let mapgen = new MapGenerator(layout, mapData);
 let app = angular.module('tib', []);
 
+app.filter('mapCodeFilter', () => function(input: MapData) { return mapgen.parseMapCode(input) });
 app.controller('IndexController', ['$scope', ($scope: any) => mapgen.view($scope)]);
