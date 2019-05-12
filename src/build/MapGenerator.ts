@@ -1,5 +1,5 @@
 import { MapData } from "./models/MapData";
-import { Layout } from "./models/Layout";
+import { Layout } from "./layout/Layout";
 import { FileOperations } from "./FileOperations";
 
 export class MapGenerator {
@@ -11,12 +11,14 @@ export class MapGenerator {
         this.file = file;
         this.layout = layout;
         this.data = defaultVars;
+
+        this.prepare();
     }
 
     view(scope: any): void {
         let mapgen = this;
 
-        scope.categories = this.layout.InputGroups;
+        scope.categories = this.layout.Categories;
         scope.codeData = this.data;
         scope.mapCode = '';
         scope.download = () => this.downloadMap();
@@ -41,6 +43,10 @@ export class MapGenerator {
         }
 
         return output;
+    }
+
+    private prepare(): void {
+        this.layout.prepare(this.data);
     }
 
     private downloadMap(): void {
