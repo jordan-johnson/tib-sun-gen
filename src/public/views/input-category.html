@@ -1,0 +1,7 @@
+<div class="border rounded p-2 mb-2">
+    <h4>{{ category.Name }}</h4>
+    <hr />
+    <div ng-repeat="row in category.Fields" class="row">
+        <div ng-repeat="field in row" class="col" ng-include="'views/input-field.html'"></div>
+    </div>
+</div>
